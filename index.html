@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Scope in Javascript</title>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+			<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+						<!--
+			<script src="pseudocode.js"></script>
+	    	-->
+	    	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	    	<link type="text/css" rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<div class="header">
+			<div class="container">
+				<h1>Scope in Javascript</h1>
+			</div>
+		</div>
+		<div class="container panel panel-default">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-12">
+					<div class="panel-heading">
+						<h2>Table of Contents</h2>
+					</div>
+					<div class="panel-body">
+						<ol>
+							<li><a href="#what">What is Scope?</a></li>
+							<li><a href="#how">How Scope Works in Javascript</a>
+								<ol>
+									<li><a href="#how-global">Global Scope</a></li>
+									<li><a href="#how-local">Local Scope</a></li>
+									<li><a href="#how-copies">Function Copies</a></li>
+									<li><a href="#how-hoisting">Hoisting</a></li>
+									<li><a href="#how-block">Block Scope...Not!</a></li>
+								</ol>
+							</li>
+							<li><a href="#try">Try It Yourself</a></li>
+						</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-lg-12 col-sm-12">
+					<h2 id="what">What is Scope?</h2>
+					<p>In programming, the notion of <span class="bold">scope</span> refers to when variables can and cannot be referenced depending on where the variable is called.</p>
+					<p>If a variable is <span class="italic">in scope</span>, then it can be referenced.</p>
+					<p>If a variable is <span class="italic">out of scope</span>, then referencing it will result in either an undefined value or a program error.</p>
+					<p>Below is an example of a scope. Hover over a variable declaration to show where the variable is in scope.</p>
+					<p>Hint: There are there variables here: <span class="code">x</span>, <span class="code">num</span>, and <span class="code">sum</span>.</p>
+					<div class="well">
+						<span id="var-what-global">var x = 3;</span><br />
+						<br />
+						<span id="scope-what-global">function getNewNumber(<span id="var-what-arg">num</span>) {<br />
+						<span id="scope-what-arg"><span class="indent"></span><span id="var-what-local">var sum = num + x;</span><br />
+						<span id="scope-what-local"><span class="indent"></span>console.log(sum);</span></span><br />
+						}<br />
+						getNewNumber(8);<br />
+						x = 5;<br />
+						getNewNumber(10);</span><br />
+					</div>
+					<p>You don't need to get what's going on just yet, but read on for more...</p>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-lg-12 col-sm-12">
+					<h2 id="how">How Scope Works in Javascript</h2>
+					<div id="how-global">
+						<h3>Global Scope</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat commodi, error eos corrupti laboriosam, eius labore assumenda. Doloremque nisi, saepe est sunt, debitis odio sapiente in, sint dolorum numquam reprehenderit distinctio aspernatur culpa illo, et natus eveniet exercitationem. In iure, quasi voluptas vero labore beatae nam aperiam animi excepturi mollitia.</p>
+						<div class="well">
+							<span id="var-how-global-global">var x = 3;</span><br />
+							<span id="scope-how-global-global">console.log(x);</span> // 3
+						</div>
+					</div>
+					<div id="how-local">
+						<h3>Local Scope</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, assumenda deserunt eius ullam expedita pariatur soluta ipsam reiciendis quaerat maiores.</p>
+						<div class="well">
+							var x = 3;<br />
+							function doThing() {<br />
+							<span class="indent"></span>var y = 5;<br />
+							}<br />
+							var z = 7;<br />
+							console.log(x);<br />
+							console.log(y); // won't work! You'll get an error here.<br />
+							console.log(z);<br />
+						</div>
+						<p>So what happens if we call a function and create a variable with the same name as the input? For example, what happens if you have code like this:</p>
+						<div class="well">
+							function printAThing(<span title="???">logMe</span>) {<br />
+							<span class="indent"></span><span title="???">var logMe = "I’m not what you originally gave me!"</span><br />
+							<span class="indent"></span>console.log(logMe);<br />
+							}<br />
+							printAThing("I’m trying to call printAThing.");<br />
+						</div>
+						<p>The answer is: <span class="bold">Don’t do this.</span> No, seriously, don’t. This is known as <span class="italic">shadowing</span> or <span class="italic">overshadowing</span>, and it’s considered bad because it’s confusing and what happens is largely dependent on the language (or possibly even something less consistent than a language specification).</p>
+						<p>The same applies to global and local variables: don't name your local variables the same thing as your global variables. The same problems will occur.</p>
+						<p>A good general rule of thumb for programming: if you can’t understand what’s going on in a program, it’s probably not a good idea in practice - especially when it’s probably easy to just change the names of what you call the function input anyway.</p>
+						<p>(By the way, what gets printed above is "I'm not what you originally gave me!" Still bad, though.)</p>
+					</div>
+					<div id="how-copies">
+						<h3>Function Copies</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat commodi, error eos corrupti laboriosam, eius labore assumenda. Doloremque nisi, saepe est sunt, debitis odio sapiente in, sint dolorum numquam reprehenderit distinctio aspernatur culpa illo, et natus eveniet exercitationem. In iure, quasi voluptas vero labore beatae nam aperiam animi excepturi mollitia.</p>
+						<div class="well">
+							function modifyWord (word) {<br />
+							<span class="indent"></span>word = "Neener neener, I'm not what you gave me!";<br />
+							<span class="indent"></span>console.log(word);<br />
+							}<br />
+							<br />
+							var inputWord = "apple";<br />
+							console.log(inputWord);<br />
+							modifyWord(inputWord);<br />
+							console.log(inputWord);
+						</div>
+					</div>
+					<div id="how-hoisting">
+						<h3>Hoisting</h3>
+					</div>
+					<div id="how-block">
+						<h3>Block Scope...Not!</h3>
+						<div class="well">
+							if(true) {<br />
+							<span class="indent"></span>var printMe = "Am I real? Yes.";<br />
+							}<br />
+							console.log(c);<br />
+							console.log("done");<br />
+						</div>
+						<div class="well">
+							if(false) {<br />
+							<span class="indent"></span>var printMe = "Am I real? Yes.";<br />
+							}<br />
+							console.log(c);<br />
+							console.log("done");<br />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-lg-12 col-sm-12">
+					<h2 id="try">Try It Yourself</h2>
+					<div class="panel panel-default" id="try-1">
+						<div class="panel-body">
+							<p>Click on each line to highlight it.</p>
+							<p>Please highlight the lines where <span class="code">y</span> is in scope.</p>
+							<div class="well">
+								<span class="highlightable">var x = 3;</span><br />
+								<span class="highlightable">function foo(){</span><br />
+								<span class="highlightable"><span class="indent"></span>var y = 4;</span><br />
+								<span class="highlightable" id="foo"><span class="indent"></span>x = x + y;</span><br />
+								<span class="highlightable" id="foo"><span class="indent"></span>console.log(x);</span><br />
+								<span class="highlightable">}</span>
+							</div>
+							<p></p>
+							<form>
+							  <div class="form-group">
+							    <label for="answer-1-1">What is the value of <span class="code">x</span>?</label>
+								<input type="text" name="answer-1-1" id="answer-1-1">
+							    <!-- <p class="help-block">Example block-level help text here.</p> -->
+							  </div>
+							</form>
+							<button class="btn btn-sm btn-primary">Check</button>
+							<div id="feedback-1"></div>
+						</div>
+					</div>
+					<div class="well">
+						function doThing(arg) {<br />
+						<span class="indent"></span>console.log(arg);<br />
+						<span class="indent"></span>console.log(printMe);<br />
+						<span class="indent"></span>if(typeof arg === "number") {<br />
+						<span class="indent"></span><span class="indent"></span>var printMe = "Got a " + arg;<br />
+						<span class="indent"></span><span class="indent"></span>console.log(printMe);<br />
+						<span class="indent"></span>}<br />
+						<span class="indent"></span>console.log(printMe);<br />
+						}<br />
+						<br />
+						console.log("here");<br />
+						//console.log(printMe); error<br />
+						doThing(3);<br />
+						console.log("b = " + b);<br />
+						<br />
+						function doAnotherThing() {<br />
+						<span class="indent"></span>console.log(arg);<br />
+						<span class="indent"></span>console.log(printMe);<br />
+						<span class="indent"></span>var oneMoreThing = "Aiyaaaaa Jackie!";<br />
+						<span class="indent"></span>console.log(oneMoreThing);<br />
+						}<br />
+						<br />
+						doThing("apple");<br />
+						doAnotherThing();<br />
+						var b = 2;<br />
+						doThing(b);<br />
+
+						<!--
+								function doThing(arg) {
+									console.log(arg);
+									console.log(printMe);
+									if(typeof arg === "number") {
+										var printMe = "Got a " + arg;
+										console.log(printMe);
+									}
+									console.log(printMe);
+								}
+
+								console.log("here");
+								//console.log(printMe); error
+								doThing(3);
+								console.log("b = " + b);
+
+
+								function doAnotherThing() {
+									//console.log(arg); // out of scope
+									//console.log(printMe); // out of scope
+									var oneMoreThing = "Aiyaaaaa Jackie!";
+									console.log(oneMoreThing);
+								}
+								doThing("apple");
+								doAnotherThing();
+								var b = 2;
+								doThing(b);
+
+
+
+								http://www.smashingmagazine.com/2009/08/what-you-need-to-know-about-javascript-scope/
+								http://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/
+								http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/
+
+								Assessment:
+									click on lines to highlight them
+									user answers questions about scope/value in text boxes
+								
+						-->
+					</div>
+				</div>
+			</div>
+		</div>
+			<script src="final.js"></script>
+	</body>
+</html>

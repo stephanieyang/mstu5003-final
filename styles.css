@@ -1,0 +1,102 @@
+h1, .bold {
+	font-weight: bold;
+}
+
+.panel-heading {
+	padding-bottom: 0px;
+}
+
+ol li li {
+	list-style-type:upper-alpha;
+}
+
+.italic {
+	font-style: italic;
+}
+
+.btn {
+	margin:0px;
+}
+
+div.well {
+	margin:5px;
+	font-family:"courier";
+}
+
+span.code {
+	font-family:"courier";
+}
+
+.well ol, .well li {
+	list-style-image: none;
+}
+
+.indent {
+	margin-left: 2em;
+	background-color: transparent;
+}
+
+span.var-A:hover, span#var-what-global:hover, span#var-how-global-global:hover {
+	font-weight: bold;
+	color:#00FFFF; /* cyan */
+}
+
+span.var-B:hover, span#var-what-arg:hover {
+	font-weight: bold;
+	color:#FF00FF; /* magenta */
+}
+
+span.var-C:hover, span#var-what-local:hover {
+	font-weight: bold;
+	color:#E5BF00; /* off-yellow */
+}
+
+span.var-D:hover {
+	font-weight: bold;
+	color:#FF0000; /* red */
+}
+
+span.var-E:hover {
+	font-weight: bold;
+	color:#00FF00; /* green */
+}
+
+.cyan {
+	background-color:#00FFFF; /* cyan */
+}
+
+.magenta {
+	background-color:#FF00FF; /* magenta */
+}
+
+.yellow {
+	background-color:#E5BF00; /* off-yellow */
+}
+
+.underline-red {
+	border-bottom: 1px solid #FF0000;
+}
+
+.underline-green {
+	border-bottom: 1px solid #00FF00;
+}
+
+.red {
+	background-color:#FF0000; /* red */
+}
+
+.green {
+	background-color:#00FF00; /* green */
+}
+
+.blue {
+	background-color:#0000FF; /* blue */
+}
+
+.msg-success {
+	color:#00A80B; /* green */
+}
+
+.msg-error {
+	color:#FF0000; /* red */
+}
