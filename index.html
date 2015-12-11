@@ -25,15 +25,14 @@
 						<h2>Table of Contents</h2>
 					</div>
 					<div class="panel-body">
-						<ol>
+					<ol>
 							<li><a href="#what">What is Scope?</a></li>
 							<li><a href="#how">How Scope Works in Javascript</a>
 								<ol>
 									<li><a href="#how-global">Global Scope</a></li>
 									<li><a href="#how-local">Local Scope</a></li>
-									<li><a href="#how-copies">Function Copies</a></li>
-									<li><a href="#how-hoisting">Hoisting</a></li>
-									<li><a href="#how-block">Block Scope...Not!</a></li>
+									<li><a href="#how-shadowing">Shadowing</a></li>
+									<li><a href="#how-hoisting">Hoisting & Block Scope...Not!</a></li>
 								</ol>
 							</li>
 							<li><a href="#try">Try It Yourself</a></li>
@@ -42,15 +41,15 @@
 				</div>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container" id="what">
 			<div class="row">
 				<div class="col-md-12 col-lg-12 col-sm-12">
-					<h2 id="what">What is Scope?</h2>
-					<p>In programming, the notion of <span class="bold">scope</span> refers to when variables can and cannot be referenced depending on where the variable is called.</p>
-					<p>If a variable is <span class="italic">in scope</span>, then it can be referenced.</p>
-					<p>If a variable is <span class="italic">out of scope</span>, then referencing it will result in either an undefined value or a program error.</p>
+					<h2>What is Scope?</h2>
+					<p>In programming, the notion of <strong>scope</strong> refers to when variables can and cannot be referenced depending on where the variable is called.</p>
+					<p>If a variable is <em>in scope</em>, then it can be referenced.</p>
+					<p>If a variable is <em>out of scope</em>, then referencing it will result in either an undefined value or a program error.</p>
 					<p>Below is an example of a scope. Hover over a variable declaration to show where the variable is in scope.</p>
-					<p>Hint: There are there variables here: <span class="code">x</span>, <span class="code">num</span>, and <span class="code">sum</span>.</p>
+					<p>Hint: There are there variables here: <code>x</code>, <code>num</code>, and <code>sum</code>.</p>
 					<div class="well">
 						<span id="var-what-global">var x = 3;</span><br />
 						<br />
@@ -66,90 +65,199 @@
 				</div>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container" id="how">
 			<div class="row">
 				<div class="col-md-12 col-lg-12 col-sm-12">
-					<h2 id="how">How Scope Works in Javascript</h2>
+					<h2>How Scope Works in Javascript</h2>
 					<div id="how-global">
 						<h3>Global Scope</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat commodi, error eos corrupti laboriosam, eius labore assumenda. Doloremque nisi, saepe est sunt, debitis odio sapiente in, sint dolorum numquam reprehenderit distinctio aspernatur culpa illo, et natus eveniet exercitationem. In iure, quasi voluptas vero labore beatae nam aperiam animi excepturi mollitia.</p>
+						<p><strong>Global</strong> variables can be referenced anywhere in a program.</p>
+						<p>A variable is <em>global</em> if it is declared <em>outside</em> of a function.</p>
+						<p>In the program below, <code>x</code> is global.</p>
+						<p>Global variables can be referenced and modified both inside and outside of functions. In other words, they can be read and manipulated anywhere!</p>
 						<div class="well">
-							<span id="var-how-global-global">var x = 3;</span><br />
-							<span id="scope-how-global-global">console.log(x);</span> // 3
+							<span id="var-global-global">var x = 3;</span><br />
+							<span id="scope-global-global">console.log(x); // prints "3"<br />
+							function doSomething() {<br />
+							<span class="indent"></span>x = 5;<br />
+							<span class="indent"></span>console.log(x);<br />
+							}<br />
+							doSomething();</span>
 						</div>
+						<form>
+						  <div class="form-group">
+							<button class="btn btn-sm btn-primary" id="check-global-global" type="button" role="button">At the end, x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-global-global" id="show-global-global" readonly>
+						    <!-- <p class="help-block">Example block-level help text here.</p> -->
+						  </div>
+						</form>
 					</div>
 					<div id="how-local">
 						<h3>Local Scope</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, assumenda deserunt eius ullam expedita pariatur soluta ipsam reiciendis quaerat maiores.</p>
+						<p><strong>Local</strong> variables can only be referenced in certain places.</p>
+						<p>A variable is <em>local</em> if it is declared <em>inside</em> of a function. A local variable can only be referenced inside the function it's defined in.</p>
+						<p>In the program below, <code>y</code> is local to the function <code>doThing()</code>. <code>x</code> and <code>z</code> are global to the program.</p>
 						<div class="well">
-							var x = 3;<br />
-							function doThing() {<br />
-							<span class="indent"></span>var y = 5;<br />
+							<span id="var-local-global1">var x = 3;</span><br />
+							<span id="scope-local-global1">function doThing() {<br />
+							<span id="var-local-local"><span class="indent"></span>var y = 5;</span><br />
+							<span id="scope-local-local"><span class="indent"></span>console.log(y); // prints "5"</span><br />
 							}<br />
-							var z = 7;<br />
-							console.log(x);<br />
+							<span id="var-local-global2">var z = 7;</span><br />
+							<span id="scope-local-global2">console.log(x);<br />
 							console.log(y); // won't work! You'll get an error here.<br />
-							console.log(z);<br />
+							console.log(z);</span></span>
 						</div>
-						<p>So what happens if we call a function and create a variable with the same name as the input? For example, what happens if you have code like this:</p>
+						<form>
+						  <div class="form-group">
+							<button class="btn btn-sm btn-primary" id="check-local-global1" type="button" role="button">Now x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-global1" id="show-local-global1" readonly>
+							<span class="longspace"></span>
+							<button class="btn btn-sm btn-primary" id="check-local-local" type="button" role="button">Now y is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-local" id="show-local-local" readonly>
+							<span class="longspace"></span>
+							<button class="btn btn-sm btn-primary" id="check-local-global2" type="button" role="button">Now z is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-global2" id="show-local-global2" readonly>
+						    <!-- <p class="help-block">Example block-level help text here.</p> -->
+						  </div>
+						</form>
+						<p>All function arguments are local.</p>
+						<p>For the next example, hover over <code>logMe</code> inside the parentheses (instead of anywhere on the line) to highlight the places where it's in scope!</p>
+						<div class="well">
+							function printAThing(<span id="var-local-arg-arg">logMe</span>) {<br />
+							<span class="indent"></span><span id="scope-local-arg-arg">console.log(logMe);</span><br />
+							}<br />
+							<span id="var-local-arg-global">var aString = "Hello world";</span><br />
+							<span id="scope-local-arg-global">printAThing(aString);<br />
+							console.log(aString); // Prints "Hello world"<br />
+							console.log(logMe); // Error! <br /></span>
+						</div>
+						<form>
+						  <div class="form-group">
+							<button class="btn btn-sm btn-primary" id="check-local-arg-arg" type="button" role="button">Now logMe is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-arg-arg" id="show-local-arg-arg" readonly>
+							<span class="longspace"></span>
+							<button class="btn btn-sm btn-primary" id="check-local-arg-global" type="button" role="button">Now aString is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-arg-global" id="show-local-arg-global" readonly>
+						    <!-- <p class="help-block">Example block-level help text here.</p> -->
+						  </div>
+						</form>
+						<p>Important to note is that function arguments are local even when you pass a variable as an argument (input) into a function.</p>
+						<p>For simple data (numbers, strings, etc.) functions receive their own copies of the variables to work with that won't affect the original version.</p>
+						<p>Note that this is different from how global variables work! Compare this to the first example in the Global Scope section above.</p>
+						<div class="well">
+							<span id="var-local-copies-global">var x = 3;</span><br />
+							<span id="scope-local-copies-global"><br />
+							function doSomething(<span id="var-local-copies-arg">num</span>) {<br />
+							<span id="scope-local-copies-arg"><span class="indent"></span>// Point B<br />
+							<span class="indent"></span>num = -999; // Not what you put in...<br />
+							<span class="indent"></span>console.log(num);<br />
+							<span class="indent"></span> // Point C</span><br />
+							}<br />
+							<br />
+							// Point A<br />
+							console.log(x);<br />
+							showModifiedWord(x);<br />
+							// Point D<br />
+							console.log(x);</span>
+						</div>
+						<form>
+							<p>At Point A:</p>
+							<button class="btn btn-sm btn-primary" id="check-local-copies-globalA" type="button" role="button">Now x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-copies-globalA" id="show-local-copies-globalA" readonly>
+							<span class="longspace"></span>
+							<button class="btn btn-sm btn-primary" id="check-local-copies-argA" type="button" role="button">Now num is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-copies-argA" id="show-local-copies-argA" readonly>
+							<p>At Point B:</p>
+							<button class="btn btn-sm btn-primary" id="check-local-copies-globalB" type="button" role="button">Now x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-copies-globalB" id="show-local-copies-globalB" readonly>
+							<span class="longspace"></span>
+							<button class="btn btn-sm btn-primary" id="check-local-copies-argB" type="button" role="button">Now num is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-copies-argB" id="show-local-copies-argB" readonly>
+							<p>At Point C:</p>
+							<button class="btn btn-sm btn-primary" id="check-local-copies-globalC" type="button" role="button">Now x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-copies-globalC" id="show-local-copies-globalC" readonly>
+							<span class="longspace"></span>
+							<button class="btn btn-sm btn-primary" id="check-local-copies-argC" type="button" role="button">Now num is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-copies-argC" id="show-local-copies-argC" readonly>
+							<p>At Point D:</p>
+							<button class="btn btn-sm btn-primary" id="check-local-copies-globalD" type="button" role="button">Now x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-copies-globalD" id="show-local-copies-globalD" readonly>
+							<span class="longspace"></span>
+							<button class="btn btn-sm btn-primary" id="check-local-copies-argD" type="button" role="button">Now num is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-copies-argD" id="show-local-copies-argD" readonly><br />
+							<br />
+						</form>
+						<p>Understanding the difference between how global and local variables are each modified can make a big difference when you're programming...</p>
+					</div>
+					<div id="how-shadowing">
+						<h3>Shadowing</h3>
+						<p>So what happens if we make a function and declare a local variable with the same name as a global variable? What happens if we modify that local variable?</p>
+						<div class="well">
+							<span title="???">var x = 3;</span><br />
+							function doSomething() {<br />
+							<span class="indent"></span><span title="???">var x = 5;</span><br />
+							<span class="indent"></span>x = x + 2;<br />
+							}<br />
+							doSomething();<br />
+							console.log(x);<br />
+						</div>
+						<p>The answer is: <strong>Don’t do this.</strong> No, seriously, don’t. This is known as <em>shadowing</em> or <em>overshadowing</em>, and it’s considered bad practice because it’s confusing and what happens is largely dependent on the language (or possibly even something less consistent than a language specification). That means it's hard to know what to expect, which is very bad for reasoning about and understanding code!</p>
+						<p>The same applies for declaring arguments for a function and then declaring variables with the same name as the argument. The same problems may occur.</p>
 						<div class="well">
 							function printAThing(<span title="???">logMe</span>) {<br />
 							<span class="indent"></span><span title="???">var logMe = "I’m not what you originally gave me!"</span><br />
 							<span class="indent"></span>console.log(logMe);<br />
 							}<br />
-							printAThing("I’m trying to call printAThing.");<br />
+							printAThing("I’m trying to call printAThing.");
 						</div>
-						<p>The answer is: <span class="bold">Don’t do this.</span> No, seriously, don’t. This is known as <span class="italic">shadowing</span> or <span class="italic">overshadowing</span>, and it’s considered bad because it’s confusing and what happens is largely dependent on the language (or possibly even something less consistent than a language specification).</p>
-						<p>The same applies to global and local variables: don't name your local variables the same thing as your global variables. The same problems will occur.</p>
 						<p>A good general rule of thumb for programming: if you can’t understand what’s going on in a program, it’s probably not a good idea in practice - especially when it’s probably easy to just change the names of what you call the function input anyway.</p>
-						<p>(By the way, what gets printed above is "I'm not what you originally gave me!" Still bad, though.)</p>
-					</div>
-					<div id="how-copies">
-						<h3>Function Copies</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat commodi, error eos corrupti laboriosam, eius labore assumenda. Doloremque nisi, saepe est sunt, debitis odio sapiente in, sint dolorum numquam reprehenderit distinctio aspernatur culpa illo, et natus eveniet exercitationem. In iure, quasi voluptas vero labore beatae nam aperiam animi excepturi mollitia.</p>
-						<div class="well">
-							function modifyWord (word) {<br />
-							<span class="indent"></span>word = "Neener neener, I'm not what you gave me!";<br />
-							<span class="indent"></span>console.log(word);<br />
-							}<br />
-							<br />
-							var inputWord = "apple";<br />
-							console.log(inputWord);<br />
-							modifyWord(inputWord);<br />
-							console.log(inputWord);
-						</div>
 					</div>
 					<div id="how-hoisting">
-						<h3>Hoisting</h3>
-					</div>
-					<div id="how-block">
-						<h3>Block Scope...Not!</h3>
+						<h3>Hoisting & Block Scope...Not!</h3>
+						<p>In Javascript (but not necessarily in other programming languages!) all variables and functions are declared at the start of the program in secret, behind the curtain. Variables are not <em>initialized</em> until you say so, however.</p>
+						<p>This means that you can reference a variable before you even declare it officially and you won't run into an error, although you won't get a real value either:</p>
+						<div class="well">
+							console.log(x);<br />
+							// Point A<br />
+							<span id="var-local-hoisting1-global">var x = 3;</span><br />
+							<span id="scope-local-hoisting1-global">console.log(x);<br />
+							// Point B</span>
+						</div>
+						<form>
+							<p>At Point A:</p>
+							<button class="btn btn-sm btn-primary" id="check-local-hoisting1-globalA" type="button" role="button">Now x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-hoisting1-globalA" id="show-local-hoisting1-globalA" readonly>
+							<p>At Point B:</p>
+							<button class="btn btn-sm btn-primary" id="check-local-hoisting1-globalB" type="button" role="button">Now x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-hoisting1-globalB" id="show-local-hoisting1-globalB" readonly>
+						</form>
+						<p>This is roughly equivalent to doing the following:</p>
+						<div class="well">
+							var x;<br />
+							console.log(x);<br />
+							// Point A<br />
+							<span id="var-local-hoisting2-global">x = 3;</span><br />
+							<span id="scope-local-hoisting2-global">console.log(x);<br />
+							// Point B</span>
+						</div>
+						<p>Should you do this? Generally, it's not a good idea to reference variables before you declare them in a file. But this does allow you to reference basic functions anywhere in a program though! Functions, too, are global unless you declare them inside another structure...</p>
+						<p>(As an aside, the example above highlights the fact that when we point out the scope of an object we refer to when its value can be referenced and is defined rather than undefined. This is because for an overwhelming majority of cases where you want to reference a variable, if not all of them, you want your variable to be defined.)</p>
+						<p>A consequence of Javascript hoisting is that new, more local scopes are only created within functions. Variables created within <code>if</code>, <code>for</code>, and <code>while</code> blocks are not local to those blocks.</p>
 						<div class="well">
 							if(true) {<br />
-							<span class="indent"></span>var printMe = "Am I real? Yes.";<br />
-							}<br />
-							console.log(c);<br />
-							console.log("done");<br />
+							<span class="indent"></span><span id="var-local-block-true">var printMe = "Hello!";</span><br />
+							<span id="scope-local-block-true">}<br />
+							console.log(printMe);</span><br />
 						</div>
+						<form>
+						<button class="btn btn-sm btn-primary" id="check-local-block-true" type="button" role="button">Now x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-block-true" id="show-local-block-true" readonly>
+						</form>
 						<div class="well">
 							if(false) {<br />
-							<span class="indent"></span>var printMe = "Am I real? Yes.";<br />
-							}<br />
-							console.log(c);<br />
-							console.log("done");<br />
+							<span class="indent"></span><span id="var-local-block-false">var printMe = "Hello!";</span><br />
+							<span id="scope-local-block-false">}<br />
+							console.log(printMe);</span><br />
 						</div>
+						<button class="btn btn-sm btn-primary" id="check-local-block-false" type="button" role="button">Now x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-block-false" id="show-local-block-false" readonly>
+						<p>Javascript is a little bit quirky in this sense. In other popular programming languages variables declared within a block are local within to that block, and they are said to be within "block scope." Because Javascript hoists variables, however, block scope doesn't exist in Javascript!</p>
+						<p>This trips up many people who learned other programming languages before learning Javascript, and people who learn Javascript and go on to learn other programming languages. Block script isn't really important if you only program in Javascript, but remember it if you try another language in the future...</p>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="container">
+		<div class="container" id="try">
 			<div class="row">
 				<div class="col-md-12 col-lg-12 col-sm-12">
-					<h2 id="try">Try It Yourself</h2>
+					<h2>Try It Yourself</h2>
 					<div class="panel panel-default" id="try-1">
 						<div class="panel-body">
 							<p>Click on each line to highlight it.</p>
-							<p>Please highlight the lines where <span class="code">y</span> is in scope.</p>
+							<p>Please highlight the lines where <code>y</code> is in scope.</p>
 							<div class="well">
 								<span class="highlightable">var x = 3;</span><br />
 								<span class="highlightable">function foo(){</span><br />
@@ -161,12 +269,12 @@
 							<p></p>
 							<form>
 							  <div class="form-group">
-							    <label for="answer-1-1">What is the value of <span class="code">x</span>?</label>
+							    <label for="answer-1-1">What is the value of <code>x</code>?</label>
 								<input type="text" name="answer-1-1" id="answer-1-1">
 							    <!-- <p class="help-block">Example block-level help text here.</p> -->
 							  </div>
 							</form>
-							<button class="btn btn-sm btn-primary">Check</button>
+							<button class="btn btn-sm btn-primary" type="button" role="button">Check</button>
 							<div id="feedback-1"></div>
 						</div>
 					</div>

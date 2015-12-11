@@ -2,6 +2,10 @@ h1, .bold {
 	font-weight: bold;
 }
 
+input {
+	text-align: center;
+}
+
 .panel-heading {
 	padding-bottom: 0px;
 }
@@ -19,7 +23,7 @@ ol li li {
 }
 
 div.well {
-	margin:5px;
+	margin:8px;
 	font-family:"courier";
 }
 
@@ -31,34 +35,38 @@ span.code {
 	list-style-image: none;
 }
 
-.indent {
+span.space {
+	margin-left: 1em;
+	background-color: transparent;
+}
+
+span.indent {
 	margin-left: 2em;
 	background-color: transparent;
 }
 
-span.var-A:hover, span#var-what-global:hover, span#var-how-global-global:hover {
+span.longspace {
+	margin-left: 8em;
+	background-color: transparent;
+}
+
+span#var-what-global:hover, span#var-global-global:hover, span#var-local-global1:hover, span#var-local-global:hover, span#var-local-arg-global:hover, span#var-local-copies-global:hover, span#var-local-hoisting1-global:hover, span#var-local-hoisting2-global:hover, span#var-local-block-true:hover, span#var-local-block-false:hover {
 	font-weight: bold;
 	color:#00FFFF; /* cyan */
 }
 
-span.var-B:hover, span#var-what-arg:hover {
+span#var-what-arg:hover, span#var-local-local:hover, span#var-local-arg-arg:hover, span#var-local-copies-arg:hover {
 	font-weight: bold;
 	color:#FF00FF; /* magenta */
 }
 
-span.var-C:hover, span#var-what-local:hover {
+span#var-what-local:hover, span#var-local-global2:hover {
 	font-weight: bold;
 	color:#E5BF00; /* off-yellow */
 }
 
-span.var-D:hover {
-	font-weight: bold;
-	color:#FF0000; /* red */
-}
-
-span.var-E:hover {
-	font-weight: bold;
-	color:#00FF00; /* green */
+input.valueCheck {
+	width:90px;
 }
 
 .cyan {
@@ -71,14 +79,6 @@ span.var-E:hover {
 
 .yellow {
 	background-color:#E5BF00; /* off-yellow */
-}
-
-.underline-red {
-	border-bottom: 1px solid #FF0000;
-}
-
-.underline-green {
-	border-bottom: 1px solid #00FF00;
 }
 
 .red {
@@ -94,7 +94,7 @@ span.var-E:hover {
 }
 
 .msg-success {
-	color:#00A80B; /* green */
+	color:#00A80B; /* medium-dark green */
 }
 
 .msg-error {
