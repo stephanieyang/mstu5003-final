@@ -90,6 +90,8 @@
 						    <!-- <p class="help-block">Example block-level help text here.</p> -->
 						  </div>
 						</form>
+						<p>Note that <code>var x = 3;</code> isn't highlighted, while everything else is. That's because <code>x</code> is still being defined in that one line.</p>
+						<p>For this lesson, when we point out the scope of a variable we refer to when its value can be referenced and is defined rather than undefined. This is because for an overwhelming majority of cases where you want to reference a variable, if not all of them, you want your variable to be defined!</p>
 					</div>
 					<div id="how-local">
 						<h3>Local Scope</h3>
@@ -137,21 +139,21 @@
 						  </div>
 						</form>
 						<p>Important to note is that function arguments are local even when you pass a variable as an argument (input) into a function.</p>
-						<p>For simple data (numbers, strings, etc.) functions receive their own copies of the variables to work with that won't affect the original version.</p>
+						<p>Functions receive their own local copies of argument variables to work with. Whatever happens with that local variable won't affect the original version. In other words, if you pass a variable into a function as an argument, the function can do whatever it wants and the original variable won't change.</p>
 						<p>Note that this is different from how global variables work! Compare this to the first example in the Global Scope section above.</p>
 						<div class="well">
 							<span id="var-local-copies-global">var x = 3;</span><br />
 							<span id="scope-local-copies-global"><br />
 							function doSomething(<span id="var-local-copies-arg">num</span>) {<br />
 							<span id="scope-local-copies-arg"><span class="indent"></span>// Point B<br />
-							<span class="indent"></span>num = -999; // Not what you put in...<br />
+							<span class="indent"></span>num = num + 2; // Not what you put in...<br />
 							<span class="indent"></span>console.log(num);<br />
 							<span class="indent"></span> // Point C</span><br />
 							}<br />
 							<br />
 							// Point A<br />
 							console.log(x);<br />
-							showModifiedWord(x);<br />
+							doSomething(x);<br />
 							// Point D<br />
 							console.log(x);</span>
 						</div>
@@ -207,7 +209,8 @@
 							console.log(x);<br />
 							// Point A<br />
 							<span id="var-local-hoisting1-global">var x = 3;</span><br />
-							<span id="scope-local-hoisting1-global">console.log(x);<br />
+							<span id="scope-local-hoisting1-global">
+							console.log(x);<br />
 							// Point B</span>
 						</div>
 						<form>
@@ -226,7 +229,6 @@
 							// Point B</span>
 						</div>
 						<p>Should you do this? Generally, it's not a good idea to reference variables before you declare them in a file. But this does allow you to reference basic functions anywhere in a program though! Functions, too, are global unless you declare them inside another structure...</p>
-						<p>(As an aside, the example above highlights the fact that when we point out the scope of an object we refer to when its value can be referenced and is defined rather than undefined. This is because for an overwhelming majority of cases where you want to reference a variable, if not all of them, you want your variable to be defined.)</p>
 						<p>A consequence of Javascript hoisting is that new, more local scopes are only created within functions. Variables created within <code>if</code>, <code>for</code>, and <code>while</code> blocks are not local to those blocks.</p>
 						<div class="well">
 							if(true) {<br />
@@ -240,8 +242,10 @@
 						<div class="well">
 							if(false) {<br />
 							<span class="indent"></span><span id="var-local-block-false">var printMe = "Hello!";</span><br />
-							<span id="scope-local-block-false">}<br />
-							console.log(printMe);</span><br />
+							<!-- <span id="scope-local-block-false"> -->
+							}<br />
+							console.log(printMe);<br />
+							<!-- </span> -->
 						</div>
 						<button class="btn btn-sm btn-primary" id="check-local-block-false" type="button" role="button">Now x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-block-false" id="show-local-block-false" readonly>
 						<p>Javascript is a little bit quirky in this sense. In other popular programming languages variables declared within a block are local within to that block, and they are said to be within "block scope." Because Javascript hoists variables, however, block scope doesn't exist in Javascript!</p>
@@ -253,102 +257,106 @@
 		<div class="container" id="try">
 			<div class="row">
 				<div class="col-md-12 col-lg-12 col-sm-12">
-					<h2>Try It Yourself</h2>
+					<h2>Test Your Understanding</h2>
+					<p>Click on each line of code to highlight it.</p>
+					<p>For each question, type your answer into the provided text box. For answers about string values, <em>don't</em> use quotation marks.</p>
+					<p>Use the Check button to see if you understand how Javascript scope works!</p>
 					<div class="panel panel-default" id="try-1">
 						<div class="panel-body">
-							<p>Click on each line to highlight it.</p>
-							<p>Please highlight the lines where <code>y</code> is in scope.</p>
+							<strong>Please highlight the lines where <code>y</code> is in scope.</strong>
 							<div class="well">
 								<span class="highlightable">var x = 3;</span><br />
 								<span class="highlightable">function foo(){</span><br />
 								<span class="highlightable"><span class="indent"></span>var y = 4;</span><br />
-								<span class="highlightable" id="foo"><span class="indent"></span>x = x + y;</span><br />
-								<span class="highlightable" id="foo"><span class="indent"></span>console.log(x);</span><br />
+								<span class="highlightable"><span class="indent"></span>x = x + y;</span><br />
+								<span class="highlightable"><span class="indent"></span>console.log(x);</span><br />
 								<span class="highlightable">}</span>
 							</div>
-							<p></p>
 							<form>
-							  <div class="form-group">
-							    <label for="answer-1-1">What is the value of <code>x</code>?</label>
-								<input type="text" name="answer-1-1" id="answer-1-1">
-							    <!-- <p class="help-block">Example block-level help text here.</p> -->
-							  </div>
+							  	<div class="form-group">
+								    <label for="answer-1-1">What is the value of <code>x</code>?</label>
+									<input type="text" name="answer-1-1" id="answer-1-1">
+								    <!-- <p class="help-block">Example block-level help text here.</p> -->
+							  	</div>
 							</form>
 							<button class="btn btn-sm btn-primary" type="button" role="button">Check</button>
-							<div id="feedback-1"></div>
+							<div class="feedback" id="feedback-1"></div>
 						</div>
 					</div>
-					<div class="well">
-						function doThing(arg) {<br />
-						<span class="indent"></span>console.log(arg);<br />
-						<span class="indent"></span>console.log(printMe);<br />
-						<span class="indent"></span>if(typeof arg === "number") {<br />
-						<span class="indent"></span><span class="indent"></span>var printMe = "Got a " + arg;<br />
-						<span class="indent"></span><span class="indent"></span>console.log(printMe);<br />
-						<span class="indent"></span>}<br />
-						<span class="indent"></span>console.log(printMe);<br />
-						}<br />
-						<br />
-						console.log("here");<br />
-						//console.log(printMe); error<br />
-						doThing(3);<br />
-						console.log("b = " + b);<br />
-						<br />
-						function doAnotherThing() {<br />
-						<span class="indent"></span>console.log(arg);<br />
-						<span class="indent"></span>console.log(printMe);<br />
-						<span class="indent"></span>var oneMoreThing = "Aiyaaaaa Jackie!";<br />
-						<span class="indent"></span>console.log(oneMoreThing);<br />
-						}<br />
-						<br />
-						doThing("apple");<br />
-						doAnotherThing();<br />
-						var b = 2;<br />
-						doThing(b);<br />
-
-						<!--
-								function doThing(arg) {
-									console.log(arg);
-									console.log(printMe);
-									if(typeof arg === "number") {
-										var printMe = "Got a " + arg;
-										console.log(printMe);
-									}
-									console.log(printMe);
-								}
-
-								console.log("here");
-								//console.log(printMe); error
-								doThing(3);
-								console.log("b = " + b);
-
-
-								function doAnotherThing() {
-									//console.log(arg); // out of scope
-									//console.log(printMe); // out of scope
-									var oneMoreThing = "Aiyaaaaa Jackie!";
-									console.log(oneMoreThing);
-								}
-								doThing("apple");
-								doAnotherThing();
-								var b = 2;
-								doThing(b);
-
-
-
-								http://www.smashingmagazine.com/2009/08/what-you-need-to-know-about-javascript-scope/
-								http://www.sitepoint.com/demystifying-javascript-variable-scope-hoisting/
-								http://toddmotto.com/everything-you-wanted-to-know-about-javascript-scope/
-
-								Assessment:
-									click on lines to highlight them
-									user answers questions about scope/value in text boxes
-								
-						-->
+					<div class="panel panel-default" id="try-2">
+						<div class="panel-body">
+							<strong>Please highlight the lines where <code>myName</code> is in scope.</strong>
+							<div class="well">
+								<span class="highlightable">var myName = "Carmen";</span><br />
+								<span class="highlightable">function mistakenHello(name) {</span><br />
+								<span class="highlightable"><span class="indent"></span>name = "Jo";</span><br />
+								<span class="highlightable"><span class="indent"></span>console.log("Hello " + name + "!");</span><br />
+								<span class="highlightable">}</span><br />
+								<span class="highlightable">mistakenHello(myName);</span><br />
+							</div>
+							<form>
+								<div class="form-group">
+								    <label for="answer-2-1">What gets printed when we call <code>mistakenHello(myName)</code>?</label>
+									<input type="text" name="answer-2-1" id="answer-2-1">
+							    	<!-- <p class="help-block">Example block-level help text here.</p> -->
+							  	</div>
+							  	<div class="form-group">
+								    <label for="answer-2-2">What is the value of <code>myName</code> at the end of this program?</label>
+									<input type="text" name="answer-2-2" id="answer-2-2">
+								    <!-- <p class="help-block">Example block-level help text here.</p> -->
+							  	</div>
+							</form>
+							<button class="btn btn-sm btn-primary" type="button" role="button">Check</button>
+							<div class="feedback" id="feedback-2"></div>
+						</div>
+					</div>
+					<div class="panel panel-default" id="try-3">
+						<div class="panel-body">
+							<strong>Please highlight the lines where <code>arg</code> is in scope.</strong>
+							<div class="well">
+								<span class="highlightable">function doThing(anArg) {</span><br />
+								<span class="highlightable"><span class="indent"></span>console.log(anArg);</span><br />
+								<span class="highlightable">}</span><br />
+								<br />
+								<span class="highlightable">function doAnotherThing(arg) {</span><br />
+								<span class="highlightable">var oneMoreThing = "Aiyaaaaa Jackie!";</span><br />
+								<span class="highlightable"><span class="indent"></span>console.log(oneMoreThing);</span><br />
+								<span class="highlightable"><span class="indent"></span>arg = "No more!";</span><br />
+								<span class="highlightable"><span class="indent"></span>console.log(arg);</span><br />
+								<span class="highlightable">}</span><br />
+								<br />
+								<span class="highlightable">var x = 15;</span><br />
+								<span class="highlightable">doThing(x);</span><br />
+								<span class="highlightable">doAnotherThing(x);</span><br />
+								<span class="highlightable">console.log(x);</span>
+							</div>
+							<form>
+								<p>The above program has four lines of output. Please fill them in below.</p>
+							  	<div class="form-group">
+								    <label for="answer-3-1">Line 1:</label>
+									<input type="text" name="answer-3-1" id="answer-3-1">
+							 	 </div>
+							  	<div class="form-group">
+								    <label for="answer-3-2">Line 2:</label>
+									<input type="text" name="answer-3-2" id="answer-3-2">
+							  	</div>
+							  	<div class="form-group">
+								    <label for="answer-3-3">Line 3:</label>
+									<input type="text" name="answer-3-3" id="answer-3-3">
+							 	</div>
+							  	<div class="form-group">
+								    <label for="answer-3-4">Line 4:</label>
+									<input type="text" name="answer-3-4" id="answer-3-4">
+							 	</div>
+							</form>
+							<button class="btn btn-sm btn-primary" type="button" role="button">Check</button>
+							<div class="feedback" id="feedback-3"></div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-			<script src="final.js"></script>
+		<script src="problemData.js"></script>
+		<script src="final.js"></script>
 	</body>
 </html>

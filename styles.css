@@ -93,6 +93,10 @@ input.valueCheck {
 	background-color:#0000FF; /* blue */
 }
 
+.feedback {
+	padding:8px;
+}
+
 .msg-success {
 	color:#00A80B; /* medium-dark green */
 }
