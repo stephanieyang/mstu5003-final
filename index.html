@@ -3,14 +3,11 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Scope in Javascript</title>
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-			<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-						<!--
-			<script src="pseudocode.js"></script>
-	    	-->
-	    	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	    	<link type="text/css" rel="stylesheet" href="styles.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet" href="css/styles.css">
 	</head>
 	<body>
 		<div class="header">
@@ -110,14 +107,14 @@
 							console.log(z);</span></span>
 						</div>
 						<form>
-						  <div class="form-group">
-							<button class="btn btn-sm btn-primary" id="check-local-global1" type="button" role="button">Now x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-global1" id="show-local-global1" readonly>
-							<span class="longspace"></span>
-							<button class="btn btn-sm btn-primary" id="check-local-local" type="button" role="button">Now y is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-local" id="show-local-local" readonly>
-							<span class="longspace"></span>
-							<button class="btn btn-sm btn-primary" id="check-local-global2" type="button" role="button">Now z is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-global2" id="show-local-global2" readonly>
-						    <!-- <p class="help-block">Example block-level help text here.</p> -->
-						  </div>
+							<div class="form-group">
+								<button class="btn btn-sm btn-primary" id="check-local-global1" type="button" role="button">Now x is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-global1" id="show-local-global1" readonly>
+								<span class="longspace"></span>
+								<button class="btn btn-sm btn-primary" id="check-local-local" type="button" role="button">Now y is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-local" id="show-local-local" readonly>
+								<span class="longspace"></span>
+								<button class="btn btn-sm btn-primary" id="check-local-global2" type="button" role="button">Now z is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-global2" id="show-local-global2" readonly>
+								<!-- <p class="help-block">Example block-level help text here.</p> -->
+							</div>
 						</form>
 						<p>All function arguments are local.</p>
 						<p>For the next example, hover over <code>logMe</code> inside the parentheses (instead of anywhere on the line) to highlight the places where it's in scope!</p>
@@ -131,12 +128,12 @@
 							console.log(logMe); // Error! <br /></span>
 						</div>
 						<form>
-						  <div class="form-group">
-							<button class="btn btn-sm btn-primary" id="check-local-arg-arg" type="button" role="button">Now logMe is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-arg-arg" id="show-local-arg-arg" readonly>
-							<span class="longspace"></span>
-							<button class="btn btn-sm btn-primary" id="check-local-arg-global" type="button" role="button">Now aString is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-arg-global" id="show-local-arg-global" readonly>
-						    <!-- <p class="help-block">Example block-level help text here.</p> -->
-						  </div>
+								<div class="form-group">
+								<button class="btn btn-sm btn-primary" id="check-local-arg-arg" type="button" role="button">Now logMe is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-arg-arg" id="show-local-arg-arg" readonly>
+								<span class="longspace"></span>
+								<button class="btn btn-sm btn-primary" id="check-local-arg-global" type="button" role="button">Now aString is...</button><span class="space"></span><input type="text" class="valueCheck" name="show-local-arg-global" id="show-local-arg-global" readonly>
+								<!-- <p class="help-block">Example block-level help text here.</p> -->
+							</div>
 						</form>
 						<p>Important to note is that function arguments are local even when you pass a variable as an argument (input) into a function.</p>
 						<p>Functions receive their own local copies of argument variables to work with. Whatever happens with that local variable won't affect the original version. In other words, if you pass a variable into a function as an argument, the function can do whatever it wants and the original variable won't change.</p>
@@ -296,15 +293,15 @@
 							</div>
 							<form>
 								<div class="form-group">
-								    <label for="answer-2-1">What gets printed when we call <code>mistakenHello(myName)</code>?</label>
+									<label for="answer-2-1">What gets printed when we call <code>mistakenHello(myName)</code>?</label>
 									<input type="text" name="answer-2-1" id="answer-2-1">
-							    	<!-- <p class="help-block">Example block-level help text here.</p> -->
-							  	</div>
-							  	<div class="form-group">
-								    <label for="answer-2-2">What is the value of <code>myName</code> at the end of this program?</label>
+									<!-- <p class="help-block">Example block-level help text here.</p> -->
+								</div>
+								<div class="form-group">
+									<label for="answer-2-2">What is the value of <code>myName</code> at the end of this program?</label>
 									<input type="text" name="answer-2-2" id="answer-2-2">
-								    <!-- <p class="help-block">Example block-level help text here.</p> -->
-							  	</div>
+									<!-- <p class="help-block">Example block-level help text here.</p> -->
+								</div>
 							</form>
 							<button class="btn btn-sm btn-primary" type="button" role="button">Check</button>
 							<div class="feedback" id="feedback-2"></div>
@@ -319,7 +316,7 @@
 								<span class="highlightable">}</span><br />
 								<br />
 								<span class="highlightable">function doAnotherThing(arg) {</span><br />
-								<span class="highlightable">var oneMoreThing = "Aiyaaaaa Jackie!";</span><br />
+								<span class="highlightable"><span class="indent"></span>var oneMoreThing = "Aiyaaaaa Jackie!";</span><br />
 								<span class="highlightable"><span class="indent"></span>console.log(oneMoreThing);</span><br />
 								<span class="highlightable"><span class="indent"></span>arg = "No more!";</span><br />
 								<span class="highlightable"><span class="indent"></span>console.log(arg);</span><br />
@@ -332,22 +329,22 @@
 							</div>
 							<form>
 								<p>The above program has four lines of output. Please fill them in below.</p>
-							  	<div class="form-group">
-								    <label for="answer-3-1">Line 1:</label>
+								<div class="form-group">
+									<label for="answer-3-1">Line 1:</label>
 									<input type="text" name="answer-3-1" id="answer-3-1">
-							 	 </div>
-							  	<div class="form-group">
-								    <label for="answer-3-2">Line 2:</label>
+								</div>
+								<div class="form-group">
+								 	<label for="answer-3-2">Line 2:</label>
 									<input type="text" name="answer-3-2" id="answer-3-2">
-							  	</div>
-							  	<div class="form-group">
-								    <label for="answer-3-3">Line 3:</label>
+								</div>
+								<div class="form-group">
+									<label for="answer-3-3">Line 3:</label>
 									<input type="text" name="answer-3-3" id="answer-3-3">
-							 	</div>
-							  	<div class="form-group">
-								    <label for="answer-3-4">Line 4:</label>
+								</div>
+								<div class="form-group">
+									<label for="answer-3-4">Line 4:</label>
 									<input type="text" name="answer-3-4" id="answer-3-4">
-							 	</div>
+								</div>
 							</form>
 							<button class="btn btn-sm btn-primary" type="button" role="button">Check</button>
 							<div class="feedback" id="feedback-3"></div>
@@ -356,7 +353,8 @@
 				</div>
 			</div>
 		</div>
-		<script src="problemData.js"></script>
-		<script src="final.js"></script>
+		<script src="js/exampleData.js"></script>
+		<script src="js/problemData.js"></script>
+		<script src="js/final.js"></script>
 	</body>
 </html>
