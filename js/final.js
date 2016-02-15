@@ -1,3 +1,6 @@
+// this is a change
+
+
 /* Turns line highlighting on/off. */
 function toggleColor(target, color) {
 	$(target).toggleClass(color);
